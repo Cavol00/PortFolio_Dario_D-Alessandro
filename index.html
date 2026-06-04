@@ -10,73 +10,88 @@
 
 <body>
 
-    <header class="main-header">
-        <div class="header-container">
-            <h1>Dario D'Alessandro</h1>
-            <p class="subtitle">Web Developer</p>
-            <div class="header-contacts">
-                <span>📧 dario.dalessandro@gmail.com</span>
-                <span id="phone-number" class="copyable-click" title="Clicca per copiare">📱 <strong class="phone-text">+39 351 8863129</strong></span>
-                <span>📍 Trento, Italia</span>
+    <!-- SFONDO DINAMICO A RIGHE ASIMMETRICHE (STILE P5 - PROFESSIONAL BLUE) -->
+    <div class="p5-bg-lines"></div>
+
+    <!-- HEADER STRUTTURATO CON SEZIONI TAGLIENTI -->
+    <header class="p5-header">
+        <div class="header-clip">
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="p5-logo" onerror="this.style.display='none'">
+            </div>
+            <h1 class="p5-title">Dario D'Alessandro</h1>
+            <p class="p5-subtitle">Web Developer</p>
+
+            <div class="p5-contacts">
+                <!-- Entrambi i badge ora hanno la classe copyable e un ID univoco -->
+                <span id="email-address" class="contact-badge copyable" title="Clicca per copiare">📧 dario.dalessandro@gmail.com</span>
+                <span id="phone-number" class="contact-badge copyable" title="Clicca per copiare">📱 +39 351 8863129</span>
+                <span class="contact-badge">📍 Trento, Italia</span>
             </div>
         </div>
     </header>
 
-    <main class="main-content">
+    <main class="p5-container">
 
-        <section class="profile-section">
-            <div class="section-card about-card">
-                <h2>Su di me</h2>
-                <p>Sono un appassionato di sviluppo web con la voglia di creare interfacce pulite, moderne e funzionali. Mi piace curare i dettagli e sperimentare con nuove tecnologie.</p>
+        <!-- SEZIONE SU DI ME & STUDI -->
+        <section class="p5-profile-section">
+            <div class="p5-card about-card trigger-anim">
+                <div class="profile-flex">
+                    <img src="profilo.jpg" alt="Avatar" class="p5-avatar" onerror="this.style.display='none'">
+                    <div>
+                        <h2 class="p5-section-title"><span>SU DI ME</span></h2>
+                        <p>Sono un appassionato di sviluppo web con la voglia di creare interfacce pulite, moderne e funzionali. Mi piace curare i dettagli e sperimentare con nuove tecnologie.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="section-card education-card">
-                <h2>Percorso di Studi</h2>
-                <div class="timeline-item">
-                    <span class="date">2025 - In corso</span>
-                    <h3> Corso Specializzazione in web development e Sicurezza informatica</h3>
-                    <h4>Marconi Alta Formazione</h4>
-                    <p>Focus su tecnologie web, basi di dati, programmazione ad oggetti e sicurezza informatica. </p>
-                </div>
-                <div class="timeline-item">
-                    <span class="date">2020 - 2025</span>
-                    <h3>Diploma di Scuola Superiore</h3>
-                    <h4>Istituto Tecnico Marconi Rovereto</h4>
-                    <p>Indirizzo di studio: Informatica</p>
+            <div class="p5-card education-card trigger-anim">
+                <h2 class="p5-section-title"><span>PERCORSO STUDI</span></h2>
+                <div class="p5-timeline">
+                    <div class="timeline-box">
+                        <span class="p5-date">2025 - IN CORSO</span>
+                        <h3>Corso Specializzazione in web development e Sicurezza informatica</h3>
+                        <h4>Marconi Alta Formazione</h4>
+                        <p>Focus su tecnologie web, basi di dati, programmazione ad oggetti e sicurezza informatica.</p>
+                    </div>
+                    <div class="timeline-box">
+                        <span class="p5-date">2020 - 2025</span>
+                        <h3>Diploma di Scuola Superiore</h3>
+                        <h4>Istituto Tecnico Marconi Rovereto</h4>
+                        <p>Indirizzo di studio: Informatica</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="skills-section section-card">
-            <h2>Skills & Competenze</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Frontend</h3>
+        <!-- SEZIONE SKILLS -->
+        <section class="p5-card skills-card trigger-anim">
+            <h2 class="p5-section-title"><span>COMPETENZE</span></h2>
+            <div class="skills-slant-grid">
+                <div class="skill-block">
+                    <h3>FRONTEND</h3>
                     <p>HTML5, CSS, JavaScript, React, Tailwind CSS</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Backend & Tools</h3>
+                <div class="skill-block">
+                    <h3>BACKEND & TOOLS</h3>
                     <p>Node.js, SQL</p>
                 </div>
-
             </div>
         </section>
 
-        <hr class="separator">
+        <!-- SEZIONE PROGETTI -->
+        <section class="p5-projects-section">
+            <div class="projects-header-slant">
+                <h2>SHOWCASE PROGETTI</h2>
+            </div>
 
-        <section class="projects-section">
-            <h2 class="section-title">Showcase Progetti</h2>
-            <p class="section-subtitle">Una raccolta dei miei lavori web interattivi caricati su GitHub Pages.</p>
-
-            <div class="portfolio-grid" id="portfolio-grid"></div>
+            <div class="p5-portfolio-grid" id="portfolio-grid"></div>
         </section>
 
     </main>
 
-    <footer class="main-footer">
-        <p>&copy; 2026 Dario D'Alessandro.</p>
-        <div class="footer-links">
-        </div>
+    <footer class="p5-footer">
+        <p>&copy; 2026 Dario D'Alessandro. CHOOSE YOUR PATH.</p>
     </footer>
 
     <script src="script.js"></script>

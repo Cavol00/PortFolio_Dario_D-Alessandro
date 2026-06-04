@@ -1,28 +1,25 @@
 /* ==================================================================
-   STRUTTURA MODULARE: AGGIUNGI O MODIFICA I TUOI PROGETTI QUI SOTTO
+   ARRAY DEI PROGETTI INTEGRATO CON COPERTINE E CODICE
    ==================================================================
 */
 const progetti = [{
-        titolo: "[[ E-Commerce Mockup ]]",
-        descrizione: "[[ Un esempio di negozio online moderno sviluppato con layout a griglia, carrello interattivo e animazioni fluide. ]]",
-        url: "https://cavol00.github.io/PortFolio_Dario_D-Alessandro/",
-        tecnologie: ["HTML5", "CSS Grid", "JavaScript"]
-    },
-    {
-        titolo: "[[ Dashboard di Analisi ]]",
-        descrizione: "[[ Pannello di controllo web responsive con grafici dinamici, modalità scura nativa e gestione dei dati in tempo reale. ]]",
+        titolo: "Picchio Rosso",
+        descrizione: "Interfaccia web dinamica e curata, ottimizzata per una navigazione fluida e responsive su tutti i dispositivi.",
         url: "https://cavol00.github.io/picchio_rosso/",
-        tecnologie: ["React", "Tailwind", "Chart.js"]
+        immagineLavoro: "progetto1.jpg",
+        immagineCodice: "codice1.jpg",
+        tecnologie: ["HTML5", "CSS3", "JavaScript"]
     },
     {
-        titolo: "[[ Applicazione Meteo ]]",
-        descrizione: "[[ Web app che consuma API meteorologiche esterne per mostrare le previsioni del tempo in base alla geolocalizzazione. ]]",
-        url: "[[ https://tuo-username.github.io/nome-progetto-3/ ]]",
+        titolo: "Applicazione Meteo",
+        descrizione: "Web app collegata ad API esterne che fornisce dati e previsioni meteo in tempo reale basate sulla posizione dell'utente.",
+        url: "https://cavol00.github.io/nome-del-tuo-meteo/",
+        immagineLavoro: "progetto2.jpg",
+        immagineCodice: "codice2.jpg",
         tecnologie: ["JavaScript", "Fetch API", "CSS3"]
     }
 ];
 
-/* --- LOGICA DI RENDERING DINAMICO --- */
 const grid = document.getElementById('portfolio-grid');
 
 function renderPortfolio() {
@@ -30,26 +27,20 @@ function renderPortfolio() {
     grid.innerHTML = "";
 
     progetti.forEach(progetto => {
-        const tagHTML = progetto.tecnologie.map(tech => `<span class="tag">${tech}</span>`).join('');
+        const tagHTML = progetto.tecnologie.map(tech => `<span class="p5-tag">${tech}</span>`).join('');
 
         const card = document.createElement('div');
-        card.className = 'project-card';
+        card.className = 'p5-project-card trigger-anim';
         card.innerHTML = `
-            <div class="browser-mockup">
-                <div class="browser-dots">
-                    <span class="dot red"></span>
-                    <span class="dot yellow"></span>
-                    <span class="dot green"></span>
-                </div>
+            <div class="p5-image-wrapper">
+                <img src="${progetto.immagineLavoro}" alt="Screenshot Lavoro" class="p5-img-site" onerror="this.style.background='#222'">
+                <img src="${progetto.immagineCodice}" alt="Screenshot Codice" class="p5-img-code" onerror="this.style.background='#333'">
             </div>
-            <div class="preview-container">
-                <iframe src="${progetto.url}" title="Anteprima di ${progetto.titolo}"></iframe>
-            </div>
-            <div class="project-info">
+            <div class="p5-project-info">
                 <h3>${progetto.titolo}</h3>
-                <div class="project-tags">${tagHTML}</div>
+                <div class="p5-tags">${tagHTML}</div>
                 <p>${progetto.descrizione}</p>
-                <a href="${progetto.url}" target="_blank" class="btn">Esplora Sito Live</a>
+                <a href="${progetto.url}" target="_blank" class="p5-btn">VISITA IL SITO ></a>
             </div>
         `;
 
@@ -57,65 +48,62 @@ function renderPortfolio() {
     });
 }
 
-/* --- INTERSECTION OBSERVER PER ANIMAZIONE CARDS --- */
+/* INTERSECTION OBSERVER AD ALTA VELOCITÀ CINETICA */
 function initScrollAnimations() {
-    const cards = document.querySelectorAll('.project-card');
+    const animElements = document.querySelectorAll('.trigger-anim');
 
     const observerOptions = {
         root: null,
         threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px"
+        rootMargin: "0px 0px -20px 0px"
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('appeared');
+                setTimeout(() => {
+                    entry.target.classList.add('appeared');
+                }, index * 60);
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    cards.forEach(card => observer.observe(card));
+    animElements.forEach(el => observer.observe(el));
 }
 
-/* --- FUNZIONE FUNZIONALITÀ: COPIA NUMERO AL TOCCO --- */
-function initClickToCopy() {
-    const phoneContainer = document.getElementById('phone-number');
+/* INTERFACCIA DI COPIA UNIVERSALE (TELEFONO ED EMAIL) */
+function setupClickToCopy(elementId, emojiToDrop) {
+    const targetElement = document.getElementById(elementId);
+    if (targetElement) {
+        targetElement.addEventListener('click', () => {
+            let rawText = targetElement.innerText;
+            // Rimuove l'emoji specifica inviata come parametro per avere la stringa testuale pulita
+            let cleanData = rawText.replace(emojiToDrop, '').trim();
 
-    if (phoneContainer) {
-        phoneContainer.addEventListener('click', () => {
-            // Estrae il testo dentro l'elemento, rimuove l'emoji e pulisce le parentesi quadre se presenti
-            let rawText = phoneContainer.innerText;
-            let cleanNumber = rawText.replace('📱', '')
-                .replace('[[', '')
-                .replace(']]', '')
-                .trim();
+            navigator.clipboard.writeText(cleanData).then(() => {
+                const originalHTML = targetElement.innerHTML;
 
-            // API di sistema per copiare negli appunti
-            navigator.clipboard.writeText(cleanNumber).then(() => {
-                // Salviamo il contenuto vecchio per ripristinarlo
-                const originalHTML = phoneContainer.innerHTML;
+                // Transizione feedback grafico
+                targetElement.innerHTML = "✅ COPIATO!";
+                targetElement.style.color = "var(--p5-black)";
+                targetElement.style.backgroundColor = "var(--p5-white)";
 
-                // Cambiamo temporaneamente la grafica dando feedback positivo
-                phoneContainer.innerHTML = "✅ Copiato!";
-                phoneContainer.classList.add('copied');
-
-                // Dopo 2 secondi reimposta il numero originale
                 setTimeout(() => {
-                    phoneContainer.innerHTML = originalHTML;
-                    phoneContainer.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error("Impossibile copiare il testo: ", err);
-            });
+                    targetElement.innerHTML = originalHTML;
+                    targetElement.style.color = "";
+                    targetElement.style.backgroundColor = "";
+                }, 1800);
+            }).catch(err => console.error("Errore copia appunti: ", err));
         });
     }
 }
 
-/* --- AVVIO DELLE FUNZIONI --- */
 document.addEventListener('DOMContentLoaded', () => {
     renderPortfolio();
     initScrollAnimations();
-    initClickToCopy(); // Inizializza il listener per il copia-in-appunti
+
+    // Inizializza i due motori di copia indipendenti passandogli l'emoji da scartare
+    setupClickToCopy('phone-number', '📱');
+    setupClickToCopy('email-address', '📧');
 });
