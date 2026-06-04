@@ -11,7 +11,7 @@ const progetti = [{
     {
         titolo: "[[ Dashboard di Analisi ]]",
         descrizione: "[[ Pannello di controllo web responsive con grafici dinamici, modalità scura nativa e gestione dei dati in tempo reale. ]]",
-        url: "https://cavol00.github.io/picchio_rosso/ ",
+        url: "https://cavol00.github.io/picchio_rosso/",
         tecnologie: ["React", "Tailwind", "Chart.js"]
     },
     {
