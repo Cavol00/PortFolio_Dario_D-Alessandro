@@ -5,7 +5,7 @@
 const progetti = [{
         titolo: "[[ E-Commerce Mockup ]]",
         descrizione: "[[ Un esempio di negozio online moderno sviluppato con layout a griglia, carrello interattivo e animazioni fluide. ]]",
-        url: "[[ https://tuo-username.github.io/nome-progetto-1/ ]]",
+        url: "https://cavol00.github.io/PortFolio_Dario_D-Alessandro/",
         tecnologie: ["HTML5", "CSS Grid", "JavaScript"]
     },
     {
